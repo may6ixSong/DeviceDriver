@@ -7,12 +7,11 @@ Application::Application(IDriver* driver) : m_driver(driver)
 
 void Application::ReadAndPrint(long startaddr, long endAddr)
 {
-   for(int i = 0; i <= endAddr - startaddr; i++)
-   {
-   		long addr = startaddr + (0x1 * i);
-        std::cout << m_driver->read(addr) << " ";
-   }
-   std::cout << "\n";
+    for (int i = 0; i <= endAddr - startaddr; i++) {
+    	long addr = startaddr + (0x1 * i);
+    	std::cout << m_driver->read(addr) << " ";
+    }
+	std::cout << "\n";
 }
 
 void Application::WriteAll(int value)
