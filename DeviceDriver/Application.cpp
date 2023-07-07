@@ -2,12 +2,12 @@
 #include <iostream>
 #include <vector>
 
-Application::Application(DeviceDriver* driver) : m_driver(driver)
+Application::Application(IDriver* driver) : m_driver(driver)
 {}
 
 void Application::ReadAndPrint(long startaddr, long endAddr)
 {
-   for(int i = 0; i < endAddr - startaddr; i++)
+   for(int i = 0; i <= endAddr - startaddr; i++)
    {
    		long addr = startaddr + (0x1 * i);
         std::cout << m_driver->read(addr) << " ";

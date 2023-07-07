@@ -1,11 +1,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "../DeviceDriver/DeviceDriver.cpp"
 #include "../DeviceDriver/Application.cpp"
 using namespace testing;
 using namespace std;
 
-class DeviceDriverMock : public DeviceDriver
+class DeviceDriverMock : public IDriver
 {
 public:
 	MOCK_METHOD(int, read, (long), ());
@@ -18,8 +17,7 @@ TEST(ApplicationTest, ReturnPassReadTest) {
 	long start_addr = 0x40001000;
 	long end_addr = 0x40001003;
 
-	FlashMemoryDevice device;
-	DeviceDriverMock mock(&device);
+	DeviceDriverMock mock;
 	EXPECT_CALL(mock, read(_))
 		.Times(4)
 		.WillOnce(Return(int(1)))
@@ -33,9 +31,8 @@ TEST(ApplicationTest, ReturnPassReadTest) {
 
 TEST(ApplicationTest, ReturnPassWriteTest) {
 	int value = 0;
-	
-	FlashMemoryDevice device;
-	DeviceDriverMock mock(&device);
+
+	DeviceDriverMock mock;
 	EXPECT_CALL(mock, write(_, _))
 		.Times(4);
 

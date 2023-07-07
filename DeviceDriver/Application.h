@@ -4,10 +4,10 @@
 class Application
 {
 public:
-    Application(DeviceDriver* driver);
+    Application(IDriver* driver);
     void ReadAndPrint(long startAddr, long endAddr);
     void WriteAll(int value);
 
 protected:
-    DeviceDriver* m_driver;
+    IDriver* m_driver;
 };
